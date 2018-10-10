@@ -21,8 +21,16 @@ credentials in your code.
         
     
 # Postgresql setup
-You can connect to Postgresql from [pgAdmin 4](https://www.pgadmin.org/). Let's insert all the data into `broadband` database 
-under `raw` schema. Once we cleanup each data set, we can move them to `public` schema.
+You can connect to Postgresql from [pgAdmin 4](https://www.pgadmin.org/). Let's insert all the data into `broadband` 
+database under `raw` schema. Once we cleanup each data set, we can move them to `public` schema. 
+
+As far as the SQL 
+naming convention, let's follow [this standard](https://stackoverflow.com/a/2878408/3128336). We write table name as 
+`lower_case_with_underscores` and SQL keywords `UPPER CASE` 
+
+For example,
+
+    UPDATE my_table SET name = 5;
 
 # How to read data from Postgresql with Python
 
