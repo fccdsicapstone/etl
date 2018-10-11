@@ -49,11 +49,16 @@ For example,
     pd.read_sql(query, engine)
 
 ## Method2
+    from urllib.parse import urlparse
     import psycopg2
     import pandas as pd
     
     #building connections to postgreSQL
-    conn = psycopg2.connect(host= host,database=db, user=usr, password=pw)
+    result = urlparse(os.environ['DSN'])
+    conn = psycopg2.connect(host=result.hostname,
+                            database=result.path[1:], 
+                            user=result.username,
+                            password=result.password)
     cur = conn.cursor()
 
     #specify your query
