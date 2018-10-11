@@ -49,28 +49,24 @@ For example,
     pd.read_sql(query, engine)
 
 ## Method2 with psycopg2
-    from urllib.parse import urlparse
-    import psycopg2
+    import os
     import pandas as pd
+    import psycopg2
     
-    #building connections to postgreSQL
-    result = urlparse(os.environ['DSN'])
-    conn = psycopg2.connect(host=result.hostname,
-                            database=result.path[1:], 
-                            user=result.username,
-                            password=result.password)
+    dsn = os.environ['DSN']
+    conn = psycopg2.connect(dsn)
     cur = conn.cursor()
 
-    #specify your query
-    sql = "SELECT * FROM raw.fcc LMIT 10" #example
+    # specify your query
+    sql = "SELECT * FROM raw.fcc LIMIT 10"  # example
 
-    #execute your query
+    # execute your query
     cur.execute(sql)
     rows = cur.fetchall()
     print("The number of rows: ", cur.rowcount)
-    
-    #convert to dataframe
-    df = pd.DataFrame(rows, columns = col_names)
+
+    # convert to dataframe
+    df = pd.DataFrame(rows)
 
 # How to insert a CSV file with Python
 
