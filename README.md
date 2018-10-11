@@ -33,7 +33,7 @@ For example,
     UPDATE my_table SET name = 5;
 
 # How to read data from Postgresql with Python
-
+## Method1
     import os
     import pandas as pd
     from sqlalchemy import create_engine
@@ -47,6 +47,25 @@ For example,
     LIMIT 10
     """
     pd.read_sql(query, engine)
+
+## Method2
+    import psycopg2
+    import pandas as pd
+    
+    #building connections to postgreSQL
+    conn = psycopg2.connect(host= host,database=db, user=usr, password=pw)
+    cur = conn.cursor()
+
+    #specify your query
+    sql = 'select * from raw.fcc limit 10' #example
+
+    #execute your query
+    cur.execute(sql)
+    rows = cur.fetchall()
+    print("The number of rows: ", cur.rowcount)
+    
+    #convert to dataframe
+    df = pd.DataFrame(rows, columns = col_names)
 
 # How to insert a CSV file with Python
 
