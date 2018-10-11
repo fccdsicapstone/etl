@@ -33,7 +33,7 @@ For example,
     UPDATE my_table SET name = 5;
 
 # How to read data from Postgresql with Python
-## Method1
+## Method1 with sqlalchemy
     import os
     import pandas as pd
     from sqlalchemy import create_engine
@@ -48,7 +48,7 @@ For example,
     """
     pd.read_sql(query, engine)
 
-## Method2
+## Method2 with psycopg2
     from urllib.parse import urlparse
     import psycopg2
     import pandas as pd
@@ -62,7 +62,7 @@ For example,
     cur = conn.cursor()
 
     #specify your query
-    sql = 'select * from raw.fcc limit 10' #example
+    sql = "SELECT * FROM raw.fcc LMIT 10" #example
 
     #execute your query
     cur.execute(sql)
