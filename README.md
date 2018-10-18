@@ -95,7 +95,7 @@ For example,
 
 FCC data is large (~400 million records) and PostgreSQL is slow for complex queries. So we also set up FCC data in [Google BigQuery](https://console.cloud.google.com/bigquery?project=fccdsicapstone-218522&authuser=1&organizationId=819335046878&p=fccdsicapstone-218522&page=project). All data can be queried from `broadband.fcc`.
 
-This is how you can read data into Pandas. You need to `pip install pandas-gbq` first.
+This is how you can read data into Pandas. You need to `conda install pandas-gbq --channel conda-forge` first.
 
     import pandas as pd
 
