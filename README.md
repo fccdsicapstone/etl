@@ -103,7 +103,7 @@ In order to read data into pandas you must install `google-cloud-sdk` and `panda
     conda install pandas-gbq --channel conda-forge
     conda install -c conda-forge google-cloud-sdk
 
-Sign into the gcloud account. Run `gcloud init` and follow the configuration & authentication instructions. Selecting your Columbia email as the account, and `fccdsicapstone-218522` as the project.
+Sign into the gcloud account - run `gcloud init` and follow the configuration & authentication instructions. Select your Columbia email as the account, and `fccdsicapstone-218522` as the project.
 
 Now use the following structure to read data:
 
