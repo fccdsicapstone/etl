@@ -95,7 +95,17 @@ For example,
 
 FCC data is large (~400 million records) and PostgreSQL is slow for complex queries. So we also set up FCC data in [Google BigQuery](https://console.cloud.google.com/bigquery?project=fccdsicapstone-218522&authuser=1&organizationId=819335046878&p=fccdsicapstone-218522&page=project). All data can be queried from `broadband.fcc`.
 
-This is how you can read data into Pandas. You need to `conda install pandas-gbq --channel conda-forge` first.
+In order to read data into pandas you must install `google-cloud-sdk` and `pandas-gbq`. 
+
+    conda create --name capstone python=3.6
+    source activate capstone
+    conda install pandas
+    conda install pandas-gbq --channel conda-forge
+    conda install -c conda-forge google-cloud-sdk
+
+Sign into the gcloud account. Run `gcloud init` and follow the configuration & authentication instructions. Selecting your Columbia email as the account, and `fccdsicapstone-218522` as the project.
+
+Now use the following structure to read data:
 
     import pandas as pd
 
