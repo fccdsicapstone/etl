@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 import os
@@ -17,7 +18,19 @@ for state_dir in states:
     for file_nm in files:
         data_id = file_nm.split('_')[3]
         file_path = os.path.join(state_dir, file_nm)
-        df = pd.read_csv(file_path, engine='python').iloc[1:]
+        df = pd.read_csv(file_path, engine='python', header=[0, 1], dtype={1: str})
+
+        cols = []
+        for col in df.columns.get_level_values(1):
+            new_name = (col.split('- ')[-1].replace(' ', '_')
+                                           .replace(";", "")
+                                           .replace(":", "")
+                                           .replace('-', "_")
+                                           .replace('/', "_")
+                                           .replace('Id2', 'block_group_code')
+                                           .lower())
+            cols.append(new_name)
+        df.columns = cols
 
         state = state_dir.split('/')[-1]
 
@@ -37,6 +50,6 @@ for k, v in data.items():
     except Exception:
         continue
 
-    print(k, len(data[k]))
+    print(table, k, len(data[k]))
     path = os.path.join('/Users/Ikkei/columbia/capstone/data/combined', '{}.csv'.format(table))
-    df.to_csv(path, index='False')
+    df.to_csv(path, index=False)
