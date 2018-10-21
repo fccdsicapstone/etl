@@ -22,16 +22,12 @@ for state_dir in states:
 
         cols = []
         for col in df.columns.get_level_values(1):
-            new_name = (col.replace(' -', '_') 
+            new_name = (col.replace(' -', '_')
                            .replace(' ', '_')
                            .replace(";", "")
                            .replace(":", "")
-                           .replace(",", "")
-                           .replace("'", "")
                            .replace('-', "_")
                            .replace('/', "_")
-                           .replace('(', "")
-                           .replace(')', "")
                            .replace('Id2', 'block_group_code')
                            .lower())
             cols.append(new_name)
