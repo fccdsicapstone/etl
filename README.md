@@ -95,6 +95,20 @@ For example,
 
 FCC data is large (~400 million records) and PostgreSQL is slow for complex queries. So we also set up FCC data in [Google BigQuery](https://console.cloud.google.com/bigquery?project=fccdsicapstone-218522&authuser=1&organizationId=819335046878&p=fccdsicapstone-218522&page=project). All data can be queried from `broadband.fcc`.
 
+Tranfer data example (via Google Cloud Engine Virtual Machine) to Google Cloud Storage
+    
+    ## In the VM (For internet speed. Avoid possible disconnection between local machine and storage caused by slow internet speed)
+    curl -o http://transition.fcc.gov/form477/BroadbandData/Fixed/Jun17/Version%201/US-Fixed-with-Satellite-Jun2017.zip
+    unzip US-Fixed-with-Satellite-Jun2017.zip
+    gsutil -m cp fbd_us_with_satellite_jun2017_v1.csv gs://fcc-data-storage/fcc
+    
+Insert data from Google Cloud Storage to Google BigQuery Table (An empty table should be created beforehand either with console or [SQL query like this](https://github.com/fccdsicapstone/etl/blob/master/acs_ddl_googlebq.sql)
+
+    ## In VM or Local Machine
+    ## Skip the first line if there is header
+    ## Set max_bad_records to a number (default 0)
+    bq load -F , --source_format CSV --skip_leading_rows 1 --max_bad_records n -E UTF-8 broadband.fcc_201706 gs://fcc-data-storage/fcc/fbd_us_with_satellite_jun2017_v1.csv
+
 In order to read data into pandas you must install `google-cloud-sdk` and `pandas-gbq`. 
 
     conda create --name capstone python=3.6
