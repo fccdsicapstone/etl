@@ -104,7 +104,7 @@ Tranfer data example (via Google Cloud Engine Virtual Machine) to Google Cloud S
     unzip US-Fixed-with-Satellite-Jun2017.zip
     gsutil -m cp fbd_us_with_satellite_jun2017_v1.csv gs://fcc-data-storage/fcc
     
-Insert data from Google Cloud Storage to Google BigQuery Table (An empty table should be created beforehand either with console or [SQL query like this](https://github.com/fccdsicapstone/etl/blob/master/acs_ddl_googlebq.sql)
+Insert data from Google Cloud Storage to Google BigQuery Table (An empty table should be created beforehand either with console or [SQL query like this](https://github.com/fccdsicapstone/etl/blob/master/acs_ddl_googlebq.sql))
 
     ## In VM or Local Machine
     ## Skip the first line if there is header
